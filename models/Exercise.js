@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// It is convention to name the file as singular and capitalized.
+// It is convention to name the file as singular and capitalizedj.
 
 // ExerciseSchema defines the shape of the document we want to store in our database.
 const ExerciseSchema = new mongoose.Schema({
@@ -34,7 +34,7 @@ const ExerciseSchema = new mongoose.Schema({
                    // add the properties manually like the commented section above.
 });
 
-module.exports = mongoose.model("User", ExerciseSchema); // Compiles the model so we can use it to
+module.exports = mongoose.model("Exercise", ExerciseSchema); // Compiles the model so we can use it to
                                                          //interact with the database later.
                                                          // To use this in other files we would do
                                                          // something like this: `const User = require('...');`
