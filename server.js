@@ -58,5 +58,5 @@ app.get('/favorite', (request, response) => {
 
 // Port connection
 app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server is running on port`)
+    console.log(`Server is running on port: ${PORT}`)
 })
