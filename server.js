@@ -4,6 +4,9 @@ const cors = require('cors')
 const connectDB = require('./database/connectDB')
 require('dotenv').config()
 
+// Routes
+const exerciseRoutes = require("./routes/exerciseRoutes");
+
 const PORT = process.env.PORT || 2121;
 
 connectDB();
@@ -14,6 +17,10 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors())
+
+app.use("/exercise", exerciseRoutes); // If the request matches the /exercise route,
+                                      // it will use the router we imported above to
+                                      // select which controller handles the request.
 
 app.get('/', (request, response) => {
     collection.find().toArray()
