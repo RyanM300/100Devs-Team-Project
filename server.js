@@ -1,24 +1,12 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
+const connectDB = require('./database/connectDB')
 require('dotenv').config()
 
+const PORT = process.env.PORT || 2121;
 
-
-// Mongo Connection
-let db,
-    dbConnectionString = process.env.DB_STRING,
-    dbName = 'workout',
-    collection
-
-MongoClient.connect(dbConnectionString)
-    .then(client => {
-        console.log(`Connected to ${dbName} database`)
-        db = client.db(dbName)
-        collection = db.collection('categories')
-    })
+connectDB();
 
 // Middleware- must be put prior to any CRUD operations
 app.set('view engine', 'ejs')
@@ -54,9 +42,7 @@ app.get('/favorite', (request, response) => {
     .catch(error => console.error(error))
 })
 
-
-
 // Port connection
-app.listen(process.env.PORT || PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`)
 })
