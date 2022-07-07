@@ -33,8 +33,13 @@ exports.createExercise = async (request, response) => {
     response.json({ success: true, exercise: createdExercise }); // Send the created document as a response.
 
   } catch (error) {
-    console.error(error);
-    // If any error occurs we response with a server error;
-    response.status(500).json({ success: false, message: "Server Error" });
+    if (error.name === "ValidationError") { // If the error is a validation error from the schema `required: [true, "Please enter a title"]`
+      response.status(400).json({ success: false, message: error.message }); // Responsed with status 400: Bad Request and send the validation message.
+    } else {
+      // Otherwise return a generic error.
+      console.error(error);
+      
+      response.status(500).json({ success: false, message: "Server Error" });
+    }
   }
 }
