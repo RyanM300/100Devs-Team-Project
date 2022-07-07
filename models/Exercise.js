@@ -13,6 +13,7 @@ const ExerciseSchema = new mongoose.Schema({
   videoUrl: {
     type: String,
     required: [true, "Please enter a video url"],
+    unique: true, // Only one document with the same video url is allowed
     trim: true
   },
   isFavorite: {
