@@ -43,3 +43,14 @@ exports.createExercise = async (request, response) => {
     }
   }
 }
+
+exports.getExercises = async (request, response) => {
+  try {
+    const exercisesFromDatabase = await Exercise.find(); // Get all exercises from the database.
+
+    response.json({ success: true, exercises: exercisesFromDatabase });
+  } catch (error) {
+    console.error(error);
+    response.status(500).json({ sucess: false, message: error.message });
+  }
+}
