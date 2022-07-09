@@ -5,7 +5,8 @@ const router = express.Router(); // Create a router
 const {
   createExercise,
   getExercises,
-  getExercise
+  getExercise,
+  updateExercise
 } = require("../controllers/exerciseController");
 
 router
@@ -21,6 +22,7 @@ router
   .route("/:id") // Specify the route we want to attach this controller to.
                  // Since we used `app.use("/exercises", exerciseRoutes);` in
                  // `server.js`, "/:id" means "/exercises/:id".
-  .get(getExercise);
+  .get(getExercise)
+  .put(updateExercise);
 
 module.exports = router; // Export the router to import it in `server.js`

@@ -61,15 +61,47 @@ exports.getExercise = async (request, response) => {
   try {
     const exerciseFromDatabase = await Exercise.findOne({ _id: id }); // Get exercise that specified by its id.
 
-      if (!exerciseFromDatabase) { // If there is not exercise with that id, return 404 Not Found.
-        response.status(404).json({ success: false, message: "No exercise found." });
-        return;
-      }
+    if (!exerciseFromDatabase) { // If there is not exercise with that id, return 404 Not Found.
+      response.status(404).json({ success: false, message: "No exercise found." });
+      return;
+    }
 
     // If found, send the found exercise in the response.
     response.json({ success: true, exercise: exerciseFromDatabase });
   } catch (error) {
     console.error(error);
     response.status(500).json({ sucess: false, message: error.message });
+  }
+}
+
+exports.updateExercise = async (request, response) => {
+  const { id } = request.params; // Get the id from the url. Example "locahost:5000/exercises/1", in this case the value of id would be 1.
+  const {
+    title,
+    videoUrl,
+    isFavorite
+  } = request.body;
+
+  try {
+    const updatedExercise = await Exercise.findOneAndUpdate({ _id: id }, { title, videoUrl, isFavorite }, // Get exercise that specified by its id and update the its properties.
+      {
+        new: true, // Options object. If new is set to FALSE, `findOneAndUpdate` will return the document BEFORE
+                   // the update is applied. If set to TRUE, `findOneAndUpdate` will return the document AFTER 
+                   // the update is appled.
+        runValidators: true // Run validations before updating the document for example the required properties
+                            // in the schema.
+      });
+
+    // If updated successfully, send the updated exercise in the response.
+    response.json({ success: true, exercise: updatedExercise });
+  } catch (error) {
+    if (error.name === "ValidationError") { // If the error is a validation error from the schema `required: [true, "Please enter a title"]`
+      response.status(400).json({ success: false, message: error.message }); // Responsed with status 400: Bad Request and send the validation message.
+    } else {
+      // Otherwise return a generic error.
+      console.error(error);
+      
+      response.status(500).json({ success: false, message: "Server Error" });
+    }
   }
 }
