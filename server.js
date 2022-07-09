@@ -1,24 +1,15 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
+const connectDB = require('./database/connectDB')
 require('dotenv').config()
 
+// Routes
+const exerciseRoutes = require("./routes/exerciseRoutes");
 
+const PORT = process.env.PORT || 2121;
 
-// Mongo Connection
-let db,
-    dbConnectionString = process.env.DB_STRING,
-    dbName = 'workout',
-    collection
-
-MongoClient.connect(dbConnectionString)
-    .then(client => {
-        console.log(`Connected to ${dbName} database`)
-        db = client.db(dbName)
-        collection = db.collection('categories')
-    })
+connectDB();
 
 // Middleware- must be put prior to any CRUD operations
 app.set('view engine', 'ejs')
@@ -26,6 +17,10 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors())
+
+app.use("/exercises", exerciseRoutes); // If the request matches the /exercise route,
+                                      // it will use the router we imported above to
+                                      // select which controller handles the request.
 
 app.get('/', (request, response) => {
     collection.find().toArray()
@@ -54,9 +49,7 @@ app.get('/favorite', (request, response) => {
     .catch(error => console.error(error))
 })
 
-
-
 // Port connection
-app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server is running on port`)
+app.listen(PORT, () => {
+    console.log(`Server is running on port: ${PORT}`)
 })
