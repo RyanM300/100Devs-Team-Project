@@ -6,7 +6,8 @@ const {
   createExercise,
   getExercises,
   getExercise,
-  updateExercise
+  updateExercise,
+  deleteExercise
 } = require("../controllers/exerciseController");
 
 router
@@ -23,6 +24,7 @@ router
                  // Since we used `app.use("/exercises", exerciseRoutes);` in
                  // `server.js`, "/:id" means "/exercises/:id".
   .get(getExercise)
-  .put(updateExercise);
+  .put(updateExercise)
+  .delete(deleteExercise);
 
 module.exports = router; // Export the router to import it in `server.js`

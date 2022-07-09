@@ -105,3 +105,17 @@ exports.updateExercise = async (request, response) => {
     }
   }
 }
+
+exports.deleteExercise = async (request, response) => {
+  const { id } = request.params; // Get the id from the url. Example "locahost:5000/exercises/1", in this case the value of id would be 1.
+
+  try {
+    const deletedExercise = await Exercise.findOneAndRemove({ _id: id });
+
+    response.json({ success: true });
+  } catch (error) {
+      console.error(error);
+      
+      response.status(500).json({ success: false, message: "Server Error" });
+  }
+}
