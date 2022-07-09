@@ -54,3 +54,22 @@ exports.getExercises = async (request, response) => {
     response.status(500).json({ sucess: false, message: error.message });
   }
 }
+
+exports.getExercise = async (request, response) => {
+  const { id } = request.params; // Get the id from the url. Example "locahost:5000/exercises/1", in this case the value of id would be 1.
+
+  try {
+    const exerciseFromDatabase = await Exercise.findOne({ _id: id }); // Get exercise that specified by its id.
+
+      if (!exerciseFromDatabase) { // If there is not exercise with that id, return 404 Not Found.
+        response.status(404).json({ success: false, message: "No exercise found." });
+        return;
+      }
+
+    // If found, send the found exercise in the response.
+    response.json({ success: true, exercise: exerciseFromDatabase });
+  } catch (error) {
+    console.error(error);
+    response.status(500).json({ sucess: false, message: error.message });
+  }
+}
