@@ -18,9 +18,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors())
 
-app.use("/exercises", exerciseRoutes); // If the request matches the /exercise route,
-                                      // it will use the router we imported above to
-                                      // select which controller handles the request.
+app.use("/exercises", exerciseRoutes);
 
 app.get('/', (request, response) => {
     collection.find().toArray()
