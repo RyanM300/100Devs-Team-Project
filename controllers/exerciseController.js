@@ -19,15 +19,24 @@ getExercise : async(req, res) => {
 },
 markFavorite: async (req, res)=>{
     try{
-        await Exercise.findByIdAndUpdate({_id:req.body.todoIdFromJSFile},
-            {
+        await Exercise.findByIdAndUpdate({_id:req.body.todoIdFromJSFile},{
             isFavorite: true, 
         })
         res.render('index', {isFavorite : true})
-        
-        
         console.log('Marked Favorite')
         res.json('Marked Favorite')
+    }catch(err){
+        console.log(err)
+    }
+},
+markUnfavorite: async (req, res)=>{
+    try{
+        await Exercise.findByIdAndUpdate({_id:req.body.todoIdFromJSFile},{
+            isFavorite: false, 
+        })
+        res.render('index', {isFavorite : false})
+        console.log('Marked Unfavorite')
+        res.json('Marked UnFfavorite')
     }catch(err){
         console.log(err)
     }

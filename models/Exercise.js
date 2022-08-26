@@ -4,7 +4,6 @@ const ExerciseSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, "Please enter a title"],
-
         trim: true
     },
      videoURL: {
@@ -15,7 +14,6 @@ const ExerciseSchema = new mongoose.Schema({
      },
      isFavorite: {
         type: Boolean,
-        
         required: true,
      },
    },{
