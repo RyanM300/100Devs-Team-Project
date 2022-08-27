@@ -172,7 +172,7 @@ html{
     padding: 0 4rem;
   }
   
-  .not{
+  .fa-regular.fa-heart{
     width: 4rem;
     height: 4rem;
     font-size: 2rem;
@@ -185,9 +185,19 @@ html{
     color: rgb(84, 84, 84);
     padding-top: 0.2rem;
   }
-  .favorite{
-   color: #FF6363;
-   background-color: #f52c86;
+  .fa-solid.fa-heart{
+   width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    font-weight: 600;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: #f52c86;
+    background-color: #fa9f9f;
+    padding-top: 0.2rem;
     
   }
   

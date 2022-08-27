@@ -2,6 +2,7 @@ const hamburger = document.querySelector(".hamburger")
 const navMenu = document.querySelector(".nav-menu")
 const todoItem = document.querySelector(".not")
 
+
 hamburger.addEventListener("click", ()=>{
     hamburger.classList.toggle("active")
     navMenu.classList.toggle("active")
@@ -10,6 +11,7 @@ document.querySelectorAll(".nav-link").forEach(ele => ele.addEventListener("clic
     hamburger.classList.remove("active")
     navMenu.classList.remove("active")
 }))
+
 
 document.querySelector('#heart').addEventListener('click', markFavorite)
 
