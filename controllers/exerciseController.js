@@ -45,29 +45,3 @@ markUnfavorite: async (req, res)=>{
 
 }
 
-
-
-
-
-
-
- // Insert Exercise to Database
-//  async function insertDymmyExerciseData(){
-//      try {
-//          await Exercise.insertMany([
-//              {
-//              "title": "5 Min Daily Stretch - An everyday, full body routine", 
-//              "videoURL": "https://www.youtube.com/watch?v=Ef6LwAaB3_E", 
-//              "isFavorite": "false", 
-//              },
-//              {
-//               "title": "5 Min. Morning Stretch | Full Body Flexibility Routine for Beginners", 
-//               "videoURL": "https://www.youtube.com/watch?v=sAf67xFS-qE", 
-//               "isFavorite": "false", 
-//              }
-//          ])
-//      } catch (error) {
-//          console.log('err', + error)
-//      }
-//  }
-// insertDymmyExerciseData()
