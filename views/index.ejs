@@ -58,7 +58,7 @@
 			<section id="exercise-description">
 				<div id="exercise-header">
 					<h2 class="favorite-button" id="title"><%- exercise.title%></h2>
-					<button type="button" class="favorite-button <%=exercise.isFavorite === true ? 'fa-solid fa-heart' : 'fa-regular fa-heart'%>" id="heart" aria-label="favorite" test="<%=exercise._id %>">
+					<button type="button" class="favorite-button <%=exercise.isFavorite === true ? 'fa-solid fa-heart' : 'fa-regular fa-heart'%>" id="heart" aria-label="favorite" data-id="<%=exercise._id %>">
 						<!-- <i class="fa-solid fa-heart"></i> -->
 					</button>
 				</div>

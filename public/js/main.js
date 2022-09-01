@@ -7,6 +7,7 @@ hamburger.addEventListener("click", ()=>{
     hamburger.classList.toggle("active")
     navMenu.classList.toggle("active")
 })
+
 document.querySelectorAll(".nav-link").forEach(ele => ele.addEventListener("click", ()=>{
     hamburger.classList.remove("active")
     navMenu.classList.remove("active")
@@ -14,11 +15,10 @@ document.querySelectorAll(".nav-link").forEach(ele => ele.addEventListener("clic
 
 
 document.querySelector('#heart').addEventListener('click', markFavorite)
-
 document.querySelector('#heart').addEventListener('click', markUnfavorite)
 
 async function markFavorite(){
-    const todoId = this.attributes[4].value
+    const todoId = this.dataset.id
     try{
         const response = await fetch('/markFavorite', {
             method: 'put',
