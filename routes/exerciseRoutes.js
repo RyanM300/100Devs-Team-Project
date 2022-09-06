@@ -5,8 +5,9 @@ const exerciseController = require('../controllers/exerciseController')
 
 // App Routes
 router.get('/', exerciseController.getExercise)
-router.put('/markFavorite', exerciseController.markFavorite )  
-router.put('/markUnfavorite', exerciseController.markUnfavorite ) 
+router.get('/favorite', exerciseController.getFavorite )
+router.put('/markFavorite', exerciseController.markFavorite )
+router.put('/markUnfavorite', exerciseController.markUnfavorite )
 
 module.exports= router
 
